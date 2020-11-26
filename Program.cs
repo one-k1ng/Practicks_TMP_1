@@ -133,6 +133,8 @@ namespace Practicks_TMP_1
                 tmp.Push(randomNumber.Next(Convert.ToInt32(input[1]), Convert.ToInt32(input[2]))); // Переводим в int интервал 
             }
 
+            tmp.Print();
+
             SortQueue(tmp);
 
             Console.WriteLine("Отсортированная очередь: ");
