@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Practicks_TMP_1
+namespace Counting_Sort
 {
     class Queue
     {
