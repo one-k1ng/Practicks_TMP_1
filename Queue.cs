@@ -6,11 +6,6 @@ namespace Counting_Sort
     {
         private int[] queue = new int[0];
 
-        public Queue()
-        {
-
-        }
-
         public int QueueSize //Размер очереди
         {
             get
