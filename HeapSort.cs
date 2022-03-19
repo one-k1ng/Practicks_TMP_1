@@ -8,31 +8,37 @@ namespace Counting_Sort
 
     public class HeapSort
     {
-        public void sort(int[] arr)
+        public int[] HeapSortmethod(Queue _queue)
         {
-            int n = arr.Length;
+            int n = _queue.QueueSize;
+            int[] nums = new int[n];
+            for (int i = 0; i < n; ++i)
+            {
+                nums[i] = _queue.Pop();
+            }
 
             // Построение кучи (перегруппируем массив)
             for (int i = n / 2 - 1; i >= 0; i--)
-                heapify(arr, n, i);
+                heapify(nums, n, i);
 
             // Один за другим извлекаем элементы из кучи
             for (int i = n - 1; i >= 0; i--)
             {
                 // Перемещаем текущий корень в конец
-                int temp = arr[0];
-                arr[0] = arr[i];
-                arr[i] = temp;
+                int temp = nums[0];
+                nums[0] = nums[i];
+                nums[i] = temp;
 
                 // вызываем процедуру heapify на уменьшенной куче
-                heapify(arr, i, 0);
+                heapify(nums, i, 0);
             }
+            return nums;
         }
 
         // Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является
-        // индексом в arr[]. n - размер кучи
+        // индексом в nums[]. n - размер кучи
 
-        void heapify(int[] arr, int n, int i)
+        void heapify(int[] nums, int n, int i)
         {
             int largest = i;
             // Инициализируем наибольший элемент как корень
@@ -40,45 +46,25 @@ namespace Counting_Sort
             int r = 2 * i + 2; // right = 2*i + 2
 
             // Если левый дочерний элемент больше корня
-            if (l < n && arr[l] > arr[largest])
+            if (l < n && nums[l] > nums[largest])
+            {
                 largest = l;
+            }
 
             // Если правый дочерний элемент больше, чем самый большой элемент на данный момент
-            if (r < n && arr[r] > arr[largest])
+            if (r < n && nums[r] > nums[largest])
                 largest = r;
 
             // Если самый большой элемент не корень
             if (largest != i)
             {
-                int swap = arr[i];
-                arr[i] = arr[largest];
-                arr[largest] = swap;
+                int swap = nums[i];
+                nums[i] = nums[largest];
+                nums[largest] = swap;
 
                 // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
-                heapify(arr, n, largest);
+                heapify(nums, n, largest);
             }
-        }
-
-        /* Вспомогательная функция для вывода на экран массива размера n */
-        static void printArray(int[] arr)
-        {
-            int n = arr.Length;
-            for (int i = 0; i < n; ++i)
-                Console.Write(arr[i] + " ");
-            Console.Read();
-        }
-
-        //Управляющая программа
-        public static void Main()
-        {
-            int[] arr = { 12, 11, 13, 5, 6, 7 };
-            int n = arr.Length;
-
-            HeapSort ob = new HeapSort();
-            ob.sort(arr);
-
-            Console.WriteLine("Sorted array is");
-            printArray(arr);
         }
     }
 }

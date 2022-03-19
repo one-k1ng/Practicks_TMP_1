@@ -2,7 +2,7 @@
 
 namespace Counting_Sort
 {
-    class Queue
+    public class Queue
     {
         private int[] queue = new int[0];
 

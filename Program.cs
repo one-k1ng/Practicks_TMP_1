@@ -120,10 +120,33 @@ namespace Counting_Sort
             }
         }
 
+        static void Reverse(int[] sortedTmp)
+        {
+            int swap = 0;
+            for (int i = 0; i < sortedTmp.Length / 2; ++i)
+            {
+                swap = sortedTmp[i];
+                sortedTmp[i] = sortedTmp[sortedTmp.Length - 1 - i];
+                sortedTmp[sortedTmp.Length - 1 - i] = swap;
+            }
+        }
+
+        static void Heap_print(int[] sortedTmp)
+        {
+            foreach (int item in sortedTmp)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("---------");
+        }
+
         static void Main()
         {
+            
             Queue tmp = new Queue();
             Random randomNumber = new Random();
+            HeapSort heapSort = new HeapSort();
+            
 
             Console.WriteLine("Введите количество чисел и интервал генерации (всё через пробел)");
             string[] input = Console.ReadLine().Split(' ');
@@ -137,8 +160,16 @@ namespace Counting_Sort
 
             SortQueue(tmp);
 
-            Console.WriteLine("Отсортированная очередь: ");
+            Console.WriteLine("Отсортированная очередь(Сортировка подсчётом): ");
             tmp.Print();
+
+            int[] sortedTmp = heapSort.HeapSortmethod(tmp);
+
+            Console.WriteLine("Отсортированная очередь(Пирамидальная сортировка): ");
+
+            Reverse(sortedTmp);
+
+            Heap_print(sortedTmp);
         }
     }
 }
